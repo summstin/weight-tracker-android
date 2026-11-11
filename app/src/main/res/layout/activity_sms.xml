@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_bg">
+
+    <!-- sms notification info -->
+
+    <TextView
+        android:id="@+id/smsinfo"
+        android:layout_width="303dp"
+        android:layout_height="306dp"
+        android:layout_marginBottom="51dp"
+        android:text="This app utilizes SMS notifications upon reaching goal weight. Press &quot;ALLOW&quot; to accept the permissions needed for SMS notifications. This is not required."
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/allowsmsbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- app title -->
+
+    <TextView
+        android:id="@+id/apptitle"
+        android:layout_width="312dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="60dp"
+        android:text="WEIGHT TRACKER"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- allow button -->
+
+    <Button
+        android:id="@+id/allowsmsbutton"
+        android:layout_width="187dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/blue_btn"
+        android:text="ALLOW"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_bg">
+
+    <!-- app title -->
+
+    <TextView
+        android:id="@+id/apptitle"
+        android:layout_width="312dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="38dp"
+        android:text="WEIGHT TRACKER"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.803"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- add todays weight button -->
+
+    <Button
+        android:id="@+id/addtodaysweightbutton"
+        android:layout_width="187dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="604dp"
+        android:layout_marginEnd="222dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/blue_btn"
+        android:text="ADD TODAYS WEIGHT"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- goal weight button -->
+    <Button
+        android:id="@+id/goalweightbutton"
+        android:layout_width="187dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="223dp"
+        android:layout_marginTop="604dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/blue_btn"
+        android:text="ADD GOAL WEIGHT"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- goal weight label -->
+
+    <TextView
+        android:id="@+id/goalView"
+        android:layout_width="264dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="20dp"
+        android:text="GOAL WEIGHT: NOT SET"
+        android:textAlignment="center"
+        android:textColor="#0D0C0C"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/apptitle" />
+
+    <!-- table setup -->
+    <!-- tables have date column, weight column, edit column, and delete column -->
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="408dp"
+        android:layout_height="384dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="30dp"
+        android:stretchColumns="0,1,1.5"
+        app:layout_constraintBottom_toTopOf="@+id/addtodaysweightbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableRow android:background="@color/green_bg">
+
+            <TextView
+                android:background="@drawable/cell_border"
+                android:padding="5dip"
+                android:text="DATE"
+                android:textStyle="bold" />
+
+            <TextView
+                android:background="@drawable/cell_border"
+                android:padding="5dip"
+                android:text="WEIGHT (lbs)"
+                android:textStyle="bold" />
+
+            <TextView
+                android:background="@drawable/cell_border"
+                android:padding="5dp"
+                android:text="EDIT"
+                android:textStyle="bold" />
+
+            <TextView
+                android:background="@drawable/cell_border"
+                android:padding="5dp"
+                android:text="DELETE"
+                android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
