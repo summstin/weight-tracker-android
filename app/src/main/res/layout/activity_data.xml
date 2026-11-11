@@ -76,43 +76,62 @@
 
     <!-- table setup -->
     <!-- tables have date column, weight column, edit column, and delete column -->
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="408dp"
-        android:layout_height="384dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="30dp"
-        android:stretchColumns="0,1,1.5"
+    <!-- column headers: same widths as item_weight.xml so the columns line up -->
+    <LinearLayout
+        android:id="@+id/headerRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goalView">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@drawable/cell_border"
+            android:padding="8dp"
+            android:text="DATE"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@drawable/cell_border"
+            android:padding="8dp"
+            android:text="WEIGHT (lbs)"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:background="@drawable/cell_border"
+            android:padding="8dp"
+            android:text="EDIT"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:background="@drawable/cell_border"
+            android:padding="8dp"
+            android:text="DELETE"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- scrollable list of entries; rows come from item_weight.xml -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/weightList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/addtodaysweightbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TableRow android:background="@color/green_bg">
-
-            <TextView
-                android:background="@drawable/cell_border"
-                android:padding="5dip"
-                android:text="DATE"
-                android:textStyle="bold" />
-
-            <TextView
-                android:background="@drawable/cell_border"
-                android:padding="5dip"
-                android:text="WEIGHT (lbs)"
-                android:textStyle="bold" />
-
-            <TextView
-                android:background="@drawable/cell_border"
-                android:padding="5dp"
-                android:text="EDIT"
-                android:textStyle="bold" />
-
-            <TextView
-                android:background="@drawable/cell_border"
-                android:padding="5dp"
-                android:text="DELETE"
-                android:textStyle="bold" />
-        </TableRow>
-    </TableLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerRow" />
 </androidx.constraintlayout.widget.ConstraintLayout>

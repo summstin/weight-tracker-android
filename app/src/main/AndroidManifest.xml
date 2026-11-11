@@ -4,10 +4,14 @@
 
     <!-- sms permissions -->
     <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-feature android:name="android.hardware.telephony"/>
+    <!-- the app works without telephony, it just can't send goal texts. -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
 
+    <!-- allowBackup is off so the database (user accounts and weights) can't be pulled out through device backups -->
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -29,8 +33,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".DataActivity" />
-        <activity android:name=".SmsActivity" />
+        <!-- other apps can't launch these screens directly. -->
+        <activity
+            android:name=".DataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SmsActivity"
+            android:exported="false" />
 
     </application>
 

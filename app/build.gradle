@@ -47,11 +47,16 @@ dependencies {
     implementation libs.androidx.compose.material3
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.appcompat
+    // add dependencies
+    implementation libs.androidx.recyclerview
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.kotlinx.coroutines.android
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
     androidTestImplementation platform(libs.androidx.compose.bom)
     androidTestImplementation libs.androidx.compose.ui.test.junit4
+    // end add
     debugImplementation libs.androidx.compose.ui.tooling
     debugImplementation libs.androidx.compose.ui.test.manifest
 }
