@@ -4,6 +4,8 @@ An Android app for logging weight by date, setting a goal weight, and getting a 
 
 Built in CS-360 and enhanced in my CS-499 capstone at SNHU.
 
+Narrative: [CS-499 Milestone Two Narrative](docs/CS-499_Milestone_Two_Narrative.pdf)
+
 ## Branches
 
 | Branch | What it contains |
