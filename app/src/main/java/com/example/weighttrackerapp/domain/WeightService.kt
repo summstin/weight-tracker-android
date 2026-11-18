@@ -28,20 +28,17 @@ class WeightService(
             is Outcome.Failure -> return r
         }
 
-        val existing = repository.getWeights(userId)   // newest first
+
         if (!repository.addWeight(userId, date.toString(), weight)) {
             return Outcome.Failure("Could not save the entry")
         }
 
         val goal = repository.getGoal(userId) ?: return Outcome.Success(AddResult(false, false))
-        val startWeight = existing.lastOrNull()?.weight
-        val previousWeight = existing.firstOrNull()?.weight
-
-        val reachedNow = GoalTracker.isGoalReached(weight, goal.weight, startWeight)
-        val alreadyReached = previousWeight != null &&
-                GoalTracker.isGoalReached(previousWeight, goal.weight, startWeight)
-        // Only text once, when the goal is first reached, not on every later entry
-        if (!reachedNow || alreadyReached) return Outcome.Success(AddResult(false, false))
+        // this entry reached the goal if it is the newest one and the goal was crossed on its date
+        val points = WeightAnalytics.clean(repository.getWeights(userId)).points
+        val reachedNow = points.lastOrNull()?.date == date &&
+                WeightAnalytics.findCrossings(points, goal.weight).any { it.date == date }
+        if (!reachedNow) return Outcome.Success(AddResult(false, false))
 
         val phone = goal.phoneNumber
         val sent = phone != null && notifier.notifyGoalReached(phone, goal.weight)
