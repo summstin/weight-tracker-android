@@ -46,6 +46,7 @@ class DataActivity : AppCompatActivity() {
 
     private lateinit var weightAdapter: WeightAdapter
     private lateinit var goalText: TextView
+    private lateinit var summaryText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +61,7 @@ class DataActivity : AppCompatActivity() {
         }
 
         goalText = findViewById(R.id.goalView)
+        summaryText = findViewById(R.id.summaryView)
 
         weightAdapter = WeightAdapter(
             onEdit = { entry -> showEditDialog(entry) },
@@ -84,6 +86,13 @@ class DataActivity : AppCompatActivity() {
     private fun render(state: WeightViewModel.UiState) {
         weightAdapter.submitList(state.entries)
         goalText.text = state.goal?.let { "GOAL WEIGHT: ${formatWeight(it.weight)}" } ?: "GOAL WEIGHT: NOT SET"
+        summaryText.text = state.stats?.let { s ->
+            listOfNotNull(
+                s.rollingAverage?.let { "7-entry avg ${formatWeight(it)}" },
+                s.last30Days?.let { "30 days: avg ${formatWeight(it.average)} (${it.count})" },
+                if (s.skipped > 0) "${s.skipped} skipped" else null
+            ).joinToString(" | ")
+        }.orEmpty()
     }
 
     private fun showAddDialog() {
