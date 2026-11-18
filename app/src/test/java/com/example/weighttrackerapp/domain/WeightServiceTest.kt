@@ -121,4 +121,31 @@ class WeightServiceTest {
         service.addEntry(bob, "2026-11-02", "149")
         assertTrue(notifier.calls.isEmpty())
     }
+
+    @Test
+    fun skippingPastTheGoalIsDetected() {
+        service.saveGoal(alice, "150", "5025550123")
+        service.addEntry(alice, "2026-11-01", "152")
+        val r = service.addEntry(alice, "2026-11-02", "148") as Outcome.Success
+        assertTrue(r.value.goalReached)
+        assertEquals(1, notifier.calls.size)
+    }
+
+    @Test
+    fun startingAtTheGoalIsNotACrossing() {
+        service.saveGoal(alice, "150", "5025550123")
+        val r = service.addEntry(alice, "2026-11-01", "150") as Outcome.Success
+        assertFalse(r.value.goalReached)
+        assertTrue(notifier.calls.isEmpty())
+    }
+
+    @Test
+    fun backdatedEntryNeverTextsAgain() {
+        service.saveGoal(alice, "150", "5025550123")
+        service.addEntry(alice, "2026-11-01", "160")
+        service.addEntry(alice, "2026-11-03", "149")          // text #1
+        val late = service.addEntry(alice, "2026-11-02", "148") as Outcome.Success
+        assertFalse(late.value.goalReached)
+        assertEquals(1, notifier.calls.size)
+    }
 }
