@@ -1,17 +1,24 @@
-# Weight Tracker (Android)
+# Weight Tracker (CS-499 Capstone Artifact)
 
-An Android app for logging weight by date, setting a goal weight, and getting a text message when the goal is reached. Built with Kotlin and SQLite.
+Android app (Kotlin, SQLite) originally built in CS-360 in [term/year]. This branch contains the **Algorithms and Data Structures** enhancement, built on top of the Software Design enhancement.
 
-Built in CS-360 and enhanced in my CS-499 capstone at SNHU.
+## What this branch adds
+- `WeightAnalytics`: cleaning (skip invalid, dedupe by date, sort), O(n) rolling average, goal-crossing detection, range summaries
+- `DateRangeIndex`: sorted list with binary search, O(log n + k) per query
+- Goal check in `WeightService.addEntry` now detects skipping past the goal
+- Summary line on the main screen (7-entry average, last 30 days)
+- JUnit tests and an instrumented benchmark comparing binary search with an indexed SQLite query
 
-Narrative: [CS-499 Milestone Two Narrative](docs/CS-499%20Milestone%20Two%20Narrative.pdf)
+## Benchmark (emulator)
+| Entries | Memory setup | Memory per query | SQLite per query |
+|---|---|---|---|
+| 1,000 | 72.1 ms | 54.6 µs | 107.7 µs |
+| 10,000 | 42.8 ms | 16.0 µs | 67.2 µs |
+| 100,000 | 363.1 ms | 14.7 µs | 83.1 µs |
 
 ## Branches
+- `software-design`: layered architecture, security and validation
+- `algorithms-and-data-structures`: this branch (includes the above)
 
-| Branch | What it contains |
-|---|---|
-| `original` | The app as I first submitted it in CS-360 |
-| `software-design` | Enhancement One: PBKDF2 password hashing, per-user data, database migration, layered design, coroutines, input validation, 32 unit tests |
-
-## Build and run
-Open the project in Android Studio (minSdk 34) and run it on an emulator. Run the unit tests with `./gradlew test`.
+## Run the tests
+Open in Android Studio. Run the `domain` tests as local unit tests, and `RangeBenchmarkTest` on an emulator.
