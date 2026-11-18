@@ -17,6 +17,9 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.weighttrackerapp.domain.WeightAnalytics
+import com.example.weighttrackerapp.domain.WeightStats
+import java.time.LocalDate
 
 // Holds what the main screen shows and runs all database work off the main thread.
 
@@ -26,7 +29,11 @@ class WeightViewModel(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
-    data class UiState(val entries: List<WeightEntry> = emptyList(), val goal: Goal? = null)
+    data class UiState(
+        val entries: List<WeightEntry> = emptyList(),
+        val goal: Goal? = null,
+        val stats: WeightStats? = null
+    )
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
@@ -96,7 +103,8 @@ class WeightViewModel(
 
     private suspend fun reload() {
         val newState = withContext(ioDispatcher) {
-            UiState(service.listEntries(userId), service.getGoal(userId))
+            val entries = service.listEntries(userId)
+            UiState(entries, service.getGoal(userId), WeightAnalytics.computeStats(entries, LocalDate.now()))
         }
         _state.value = newState
     }
