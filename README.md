@@ -1,6 +1,6 @@
 # Weight Tracker (CS-499 Capstone Artifact)
 
-Android app (Kotlin, SQLite) originally built in CS-360 in [term/year]. This branch contains the **Software Design and Engineering** enhancement, with a focus on structure, security and testability.
+Android app (Kotlin, SQLite) originally built in CS-360 in Spring 2026. This branch contains the **Software Design and Engineering** enhancement, with a focus on structure, security and testability.
 
 ## What this branch changes
 
