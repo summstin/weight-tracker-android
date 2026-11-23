@@ -1,6 +1,6 @@
 # Weight Tracker (CS-499 Capstone Artifact)
 
-Android app (Kotlin, SQLite) originally built in CS-360 in [term/year]. This branch contains the **Algorithms and Data Structures** enhancement, built on top of the Software Design enhancement.
+Android app (Kotlin, SQLite) originally built in CS-360 in Spring 2026. This branch contains the **Algorithms and Data Structures** enhancement, built on top of the Software Design enhancement.
 
 ## What this branch adds
 - `WeightAnalytics`: cleaning (skip invalid, dedupe by date, sort), O(n) rolling average, goal-crossing detection, range summaries
